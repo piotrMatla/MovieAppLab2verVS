@@ -16,7 +16,7 @@ namespace FilmowaVS.Controllers
         // GET: FilmController
         public ActionResult Index()
         {
-            return View();
+            return View(films);
         }
 
         // GET: FilmController/Details/5
@@ -28,22 +28,18 @@ namespace FilmowaVS.Controllers
         // GET: FilmController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Film());
         }
 
         // POST: FilmController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Film film)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            film.Id = films.Count + 1;
+            films.Add(film);
+            return RedirectToAction(nameof(Index));
+            
         }
 
         // GET: FilmController/Edit/5
