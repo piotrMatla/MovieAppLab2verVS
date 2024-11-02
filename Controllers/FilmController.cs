@@ -22,7 +22,7 @@ namespace FilmowaVS.Controllers
         // GET: FilmController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(films.FirstOrDefault(x => x.Id == id));
         }
 
         // GET: FilmController/Create
