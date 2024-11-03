@@ -66,22 +66,18 @@ namespace FilmowaVS.Controllers
         // GET: FilmController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(films.FirstOrDefault(x => x.Id == id));
         }
 
         // POST: FilmController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Film movie)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Film film = films.FirstOrDefault(x => x.Id == id);
+            films.Remove(film);
+            return RedirectToAction(nameof(Index));
+            
         }
     }
 }
