@@ -36,7 +36,8 @@ namespace FilmowaVS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Film film)
         {
-            film.Id = films.Count + 1;
+            int NewId = films.Max(x => x.Id) + 1;
+            film.Id = NewId;
             films.Add(film);
             return RedirectToAction(nameof(Index));
             
