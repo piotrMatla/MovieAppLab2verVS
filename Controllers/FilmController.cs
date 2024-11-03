@@ -51,16 +51,14 @@ namespace FilmowaVS.Controllers
         // POST: FilmController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Film movie)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Film film = films.FirstOrDefault(x => x.Id == id);
+
+            film.Name = movie.Name;
+            film.Description = movie.Description;
+            film.Price = movie.Price;
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: FilmController/Delete/5
